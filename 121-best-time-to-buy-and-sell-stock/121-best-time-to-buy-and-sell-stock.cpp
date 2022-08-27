@@ -19,17 +19,19 @@ public:
         int n = prices.size();
         vector<vector<int>> dp(n+1,vector<int>(2,0));
         // return calprof(prices,0,1,dp);
+        vector<int> forw(2,0), curr(2,0);
         for(int i = prices.size()-1;i>=0;i--){
             for(int k=0;k<=1;k++){
                 int prof = 0;
                 if(k==1){
-                    dp[i][k] = max(-prices[i] + dp[i+1][0],dp[i+1][1]);
+                    curr[k] = max(-prices[i] + forw[0],forw[1]);
                 }
                 else{
-                    dp[i][k] = max(prices[i],dp[i+1][0]);
+                    curr[k] = max(prices[i],forw[0]);
                 }
             }
+            forw = curr;
         }
-        return dp[0][1];
+        return forw[1];
     }
 };
