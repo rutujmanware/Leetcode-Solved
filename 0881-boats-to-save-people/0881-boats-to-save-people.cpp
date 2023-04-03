@@ -16,19 +16,19 @@ public:
         int i=0;
         int j = people.size()-1;
         while(i<=j){
+            count++;
             if(people[i]+people[j]<=limit && i!=j){
-                count++;
-                i++;
                 j--;
             }
-            else if(people[i]+people[j]>limit && i!=j){
-                count++;
-                i++;
-            }
-            else if(i==j){
-                count++;
-                i++;
-            }
+            i++;
+            // else if(people[i]+people[j]>limit && i!=j){
+            //     count++;
+            //     i++;
+            // }
+            // else if(i==j){
+            //     count++;
+            //     i++;
+            // }
         }
         return count;
     }
