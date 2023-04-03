@@ -17,7 +17,7 @@ public:
         int j = people.size()-1;
         while(i<=j){
             count++;
-            if(people[i]+people[j]<=limit && i!=j){
+            if(people[i]+people[j]<=limit){
                 j--;
             }
             i++;
