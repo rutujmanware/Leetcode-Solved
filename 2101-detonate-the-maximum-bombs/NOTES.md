@@ -1,1 +1,1 @@
-​
+Main logic to sirf itna dekhna hai ki kis bomb ko fodoge toh kon konse bomb saath me futenge aur fir iski ek adjacency list banake travarsal kardo koi bhi aur count karte chalo har bomb ko fodne ke baad kitne bomb futenge.
