@@ -1,41 +1,44 @@
 class Solution {
 public:
-    void dfs(int row,int col, int n, int m,vector<vector<int>>& grid){
-        grid[row][col]=1;
-        vector<int> rowsum = {1,-1,0,0};
-        vector<int> colsum = {0,0,-1,1};
-        for(int i=0;i<4;i++){
-            int r = row+rowsum[i];
-            int c = col+colsum[i];
-            if(r<0 || c<0 || r>=n|| c>=m){
-                continue;
-            }
-            if(grid[r][c]==0){
-                dfs(r,c,n,m,grid);
-            }
-        }
-    }
-    
+    bool isIsland;
     int closedIsland(vector<vector<int>>& grid) {
-       int n=grid.size();
-        int m=grid[0].size();
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if((i*j==0 || i==n-1 || j==m-1) && grid[i][j]==0){
-                    dfs(i,j,n,m,grid);
+        isIsland = true;
+        int islands = 0;
+        for(int i = 0; i < grid.size(); i++)
+        {
+            for(int j = 0; j < grid[0].size(); j++)
+            {
+                //Found a possible land, do traversal and check isIsland
+                if(grid[i][j] == 0)
+                {
+                    findIsland(i,j,grid);
+                    if(isIsland)    
+                        islands++;  //the current traversal found island, increment count                               
+                    else    
+                        isIsland = true;
                 }
             }
         }
-        int ans=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==0){
-                    ans++;
-                    dfs(i,j,n,m,grid);
-                }
-            }
+        return islands;
+    }
+
+    void findIsland(int i, int j, vector<vector<int>>& grid)
+    {      
+        //out-of-border coordination: invalid 
+        if(!(i >= 0 && j >= 0 && i < grid.size() && j < grid[0].size()))
+        {
+            return;
         }
         
-        return ans;
+        //If we reach water we stop, else continue traversal
+        if(grid[i][j] == 1) return; 
+        else grid[i][j] = 1;
+        //If current land is at border, it's not closed islands, mark isIsland as false
+        if(i == 0 || j == 0 || i == grid.size()-1 || j == grid[0].size()-1)
+            isIsland = false;
+        findIsland(i-1,j,grid);
+        findIsland(i,j-1,grid);
+        findIsland(i+1,j,grid);
+        findIsland(i,j+1,grid);
     }
 };
