@@ -6,12 +6,12 @@ public:
         int j = 0; 
         
         for(auto val : pushed){
-            st.push(val); // insert the values in stack
+            st.push(val); 
             while(st.size() > 0 && st.top() == popped[j]){ 
-                st.pop(); // then pop out
-                j++; // increment j
+                st.pop();
+                j++; 
             }
         }
-        return st.size() == 0; // check if stack is empty return true else false
+        return st.size() == 0; 
     }
 };
