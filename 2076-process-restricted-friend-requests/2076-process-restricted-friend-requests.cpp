@@ -42,6 +42,8 @@ class Solution {
 public:
     vector<bool> friendRequests(int n, vector<vector<int>>& restrictions, vector<vector<int>>& requests) {
         UnionFind u(n);
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
         vector<bool> ans(requests.size(),false);
         int t = 0;
         for(auto &r:requests){
