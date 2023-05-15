@@ -11,29 +11,21 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        ListNode* start,* end;
-        start = head;
-        end = head;
-        // cout<<head->val<<endl;
-        int x=0;
-        while(x!=k-1){
-            start=start->next;
-            x++;
+         ListNode* slow=head;
+        ListNode* fast=head;
+         ListNode* f;
+        ListNode* l;
+        while(--k){
+            fast=fast->next;
+            // cout<<k<<endl;
         }
-        int count=0;
-        while(end){
-            end=end->next;
-            count++;
+        f=fast;
+        while(fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next;
+            
         }
-        // count;
-        count=count-k;
-        end = head;
-        while(count--){
-            end = end->next;
-        }
-        // cout<<end->val<<endl;
-        // cout<<start->val;
-        swap(start->val,end->val);
+        swap(slow->val,f->val);
         return head;
     }
 };
