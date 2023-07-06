@@ -30,10 +30,10 @@ public:
             m[nums[i]]++;
         }
         int ans = 0;
-        for(auto &val:m){
-            if(val.first==target.substr(0,val.first.size())){
-                string s = target.substr(val.first.size());
-                ans += (val.first==s)?(val.second-1)*val.second:val.second*m[s];
+        for(auto &[pre,freq]:m){
+            if(pre==target.substr(0,pre.size())){
+                string s = target.substr(pre.size());
+                ans += (pre==s)?(freq-1)*freq:freq*m[s];
             }
         }
         return ans;
