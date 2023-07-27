@@ -1,23 +1,54 @@
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& heights) {
-        int n = heights.size() , max_area = INT_MIN , i = 0 ; 
-        stack<int> s ;
-        while(i < n) {
-            if(s.empty() || heights[s.top()] <= heights[i]) {
-                s.push(i) ; 
-                i++ ; 
-            } else {
-                int prev_top = s.top() ; 
-                s.pop() ; 
-                max_area = max(max_area , heights[prev_top] * (s.empty() ? i : i - s.top() - 1)) ;
-            }
+    int largestRectangleArea(vector<int>& h) {
+        stack<int> s;
+        int n = h.size();
+        vector<int> left(n);
+        vector<int> right(n);
+        // if(h.size() ==1){
+        //     return h[0];
+        // }
+        
+        for(int i = 0; i < n; i++){
+           
+                while(!s.empty() && h[s.top()] >= h[i]){
+                    s.pop();
+                }
+                if(s.empty()){
+                    left[i] = -1;
+                }
+                else{
+                    left[i] = s.top();
+                }
+            
+            s.push(i);
         }
-        while(!s.empty()) {
-            int prev_top = s.top() ; 
-            s.pop() ; 
-            max_area = max(max_area , heights[prev_top] * (s.empty() ? i : i - s.top() - 1)) ;
-        }  
-        return max_area ;
+        while(!s.empty()){
+            s.pop();
+        }
+        for(int i = n-1; i >= 0; i--){
+           
+                while(!s.empty() && h[s.top()] >= h[i]){
+                    s.pop();
+                }
+                if(s.empty()){
+                    right[i] = n-1;
+                }
+                else{
+                    right[i] = s.top()-1;
+                }
+            
+            s.push(i);
+        }
+        int area = 0;
+        // for(int i = 0;i<n;i++){
+        //     cout<<left[i]<<" "<<right[i]<<endl;
+        // }
+        // cout<<endl;
+        for(int i=0;i<n;i++){
+            area = max((right[i] - left[i]) * h[i],area);
+        }
+       
+        return area;
     }
 };
