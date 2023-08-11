@@ -32,7 +32,7 @@ public:
             st.pop();
         }
         if(ans.size()==0){
-            ans+='/';
+            return "/";
         }
         return ans;
     }
