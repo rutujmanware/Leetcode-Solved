@@ -12,7 +12,7 @@ public:
             ans = ans*10 + temp;
             x = abs(x)/10;
         }
-        if(ans < -1*pow(2,31) || ans> pow(2,31)-1){
+        if(ans < INT_MIN || ans> INT_MAX){
             return 0;
         }
         if(flag){
