@@ -11,9 +11,7 @@ public:
             ans = ans*10+temp;
             x /= 10;
         }
-        if(p == ans){
-            return true;
-        }
-        return false;
+        return(p == ans);
+           
     }
 };
