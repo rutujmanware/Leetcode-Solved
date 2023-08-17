@@ -29,7 +29,7 @@ public:
         string ans ="";
         while(columnNumber>0)
         {
-            char ch = char(ceil((columnNumber-1)%26 +65));
+            char ch = char(((columnNumber-1)%26 +65));
             ans = ch+ans;
             columnNumber = (columnNumber-1)/26;
         }
